@@ -1,0 +1,9 @@
+framework:
+    messenger:
+        transports:
+            doctrine:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    table_name: messenger_messages
+        routing:
+            'App\Message\FormSubmissionMessage': doctrine

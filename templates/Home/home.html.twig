@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formularz{% endblock %}
+
+{% block body %}
+    <div class="bg-slate-400 min-h-screen flex justify-center items-center">
+        <div class="bg-slate-300 p-8 rounded-lg shadow-lg w-full max-w-lg">
+            <h2 class="text-2xl font-bold text-center mb-6">Formularz</h2>
+
+            <form id="submissionForm" action="{{ path('form_submit') }}" method="POST" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="firstName" class="block text-sm font-medium text-slate-800">Imię</label>
+                    <input type="text" id="firstName" name="firstName" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-slate-200 focus:border-slate-500" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="lastName" class="block text-sm font-medium text-slate-800">Nazwisko</label>
+                    <input type="text" id="lastName" name="lastName" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-slate-200 focus:border-slate-500" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="attachment" class="block text-sm font-medium text-slate-800">Załącznik (Obrazek)</label>
+                    <input type="file" id="attachment" name="attachment" accept="image/*" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-slate-200 focus:border-slate-500" required>
+                    <small class="text-slate-500">Maksymalny rozmiar pliku: 2MB</small>
+                </div>
+
+                <div class="mt-4 flex justify-between items-center">
+                    <button type="submit" class="bg-slate-600 text-white px-4 py-2 rounded-md hover:bg-slate-500">Wyślij</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.getElementById('submissionForm').addEventListener('submit', function (e) {
+
+            let formData = new FormData(this);
+
+            fetch('{{ path('form_submit') }}', {
+                method: 'POST',
+                body: formData
+            })
+        });
+    </script>
+{% endblock %}
