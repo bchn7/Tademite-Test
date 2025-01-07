@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     git \
     libpq-dev \
     curl \
+    inetutils-ping \
     unzip # Added unzip for handling zip files
 
 # Install PHP extensions

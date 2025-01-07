@@ -18,6 +18,9 @@ migrate:
 create-migration:
 	docker compose exec php php bin/console doctrine:migrations:diff
 
+consume:
+	docker compose exec php php bin/console messenger:consume doctrine -vv
+
 test:
 	docker compose exec php php bin/console doctrine:schema:validate
 	docker compose exec php php bin/phpunit
