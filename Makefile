@@ -21,6 +21,9 @@ create-migration:
 consume:
 	docker compose exec php php bin/console messenger:consume doctrine -vv
 
+composer:
+	docker compose exec php composer install
+
 test:
 	docker compose exec php php bin/console doctrine:schema:validate
 	docker compose exec php php bin/phpunit
