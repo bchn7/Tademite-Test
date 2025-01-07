@@ -11,7 +11,7 @@ services:
       - database
     networks:
       - tandemite_app-network
-    command: /bin/sh -c "composer install && npm install && php bin/console tailwind:build --watch"
+    command: /bin/sh -c "composer install && npm install && php bin/console tailwind:build && php-fpm"
 
   nginx:
     image: nginx:latest
